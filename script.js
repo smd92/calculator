@@ -19,9 +19,10 @@ function divide(inputOne, inputTwo) {
     return inputOne / inputTwo;
 }
 
-function power(numOne, numTwo) {
-	return numOne ** numTwo;
+function power(inputOne, inputTwo) {
+	return inputOne ** inputTwo;
 }
+
 /*
 function factorial(num) {
 	if (num === 0 || num === 1) {
@@ -45,3 +46,18 @@ function sum(input) {
     }
 }
 */
+
+function operate(operator, numOne, numTwo) {
+	if (operator === "+") {
+		add(numOne, numTwo);
+	}
+	else if (operator === "-") {
+		subtract(numOne, numTwo);
+	}
+	else if (operator === "*") {
+		multiply(numOne, numTwo);
+	}
+	else if (operator === "/") {
+		divide(numOne, numTwo);
+	}
+}
