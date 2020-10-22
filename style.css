@@ -3,8 +3,8 @@ body {
     height: 100vh;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 1fr 350px 1fr;
-    grid-template-rows: 1fr 550px 1fr;
+    grid-template-columns: 1fr 500px 1fr;
+    grid-template-rows: 1fr 650px 1fr;
     grid-template-areas: 
     ". . ."
     ". container ."
@@ -27,4 +27,24 @@ body {
     grid-template-rows: 100%;
     grid-template-columns: 100%;
     align-items: center;
+}
+
+#keypad {
+    display: grid;
+    grid-template-columns: 200px 60px;
+    grid-template-areas: 
+    "digit operators";
+}
+
+#digits {
+    display: grid;
+    grid-template-columns: 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px 50px;
+    grid-area: digit;
+}
+
+#operators {
+    display: grid;
+    grid-template-rows: 50px 50px 50px 50px;
+    grid-area: operators;
 }
