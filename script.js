@@ -42,8 +42,12 @@ const clear = document.querySelector("#clear");
 const displayContent = document.querySelector("#displayContent");
 const numbers = document.querySelectorAll(".number");
 
+//push user input to array and update display content with user input
+let numbersArr = [];
+
 for (let i = 0; i < numbers.length; i++) {
 	numbers[i].addEventListener("click", () => {
-		displayContent.innerHTML += numbers[i].textContent;
+		numbersArr.push(numbers[i].textContent);
+		displayContent.textContent += numbers[i].textContent;
 	})
 }
