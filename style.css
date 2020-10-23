@@ -15,36 +15,80 @@ body {
     border: solid 2px;
     grid-area: container;
     display: grid;
+    grid-template-columns: 500px;
+    grid-template-rows: 100px 550px;
+    grid-template-areas:
+    "display"
+    "keypad";
 }
 
 #display {
-    width: 100%;
-    height: 100px;
-    text-align: right;
-    font-size: 40px;
-    border-bottom: solid 2px;
     display: grid;
-    grid-template-rows: 100%;
-    grid-template-columns: 100%;
+    grid-area: display;
+    grid-template-columns: 80px 370px;
+    grid-template-rows: 90px;
+    align-self: center;
+    justify-self: center;
     align-items: center;
+    font-size: 50px;
+    grid-template-areas: 
+    "clear input";
+}
+
+#displayContent {
+    display: grid;
+    grid-area: input;
+    justify-self: end;
+    width: 370px;
+    text-align: right;
+    border-top: solid;
+    border-right: solid;
+    border-bottom: solid;
+    padding-right: 10px;
+}
+
+#clear {
+    display: grid;
+    grid-area: clear;
+    place-self: center;
+    width: 80px;
+    text-align: center;
+    border: solid;
 }
 
 #keypad {
     display: grid;
-    grid-template-columns: 200px 60px;
+    grid-template-columns: 300px 150px;
     grid-template-areas: 
     "digit operators";
+    grid-area: keypad;
+    justify-self: center;
+    align-self: center;
+    font-size: 55px;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 #digits {
     display: grid;
-    grid-template-columns: 50px 50px 50px;
-    grid-template-rows: 50px 50px 50px 50px;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 130px 130px 130px 130px;
     grid-area: digit;
+    justify-self: center;
+    align-self: center;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-evenly;
 }
 
 #operators {
     display: grid;
-    grid-template-rows: 50px 50px 50px 50px;
+    grid-template-columns: 100px;
+    grid-template-rows: 130px 130px 130px 130px;
     grid-area: operators;
+    justify-self: center;
+    align-self: center;
+    align-items: center;
+    justify-items: center;
 }
