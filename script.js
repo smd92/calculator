@@ -47,7 +47,20 @@ let numbersArr = [];
 
 for (let i = 0; i < numbers.length; i++) {
 	numbers[i].addEventListener("click", () => {
+		if (numbersArr.length === 0) {
+			displayContent.textContent = numbers[i].textContent;
+		}
+		else if (numbersArr.length < 14) {
+			displayContent.textContent += numbers[i].textContent;
+		}
 		numbersArr.push(numbers[i].textContent);
-		displayContent.textContent += numbers[i].textContent;
 	})
 }
+
+//implement function for clearing display and array from user input
+clear.addEventListener("click", () => {
+	displayContent.textContent = "0";
+	for (let j = numbersArr.length; j > 0; j--) {
+		numbersArr.pop();
+	}
+})
