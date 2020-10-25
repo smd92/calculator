@@ -41,26 +41,48 @@ function operate(operator, numOne, numTwo) {
 const clear = document.querySelector("#clear");
 const displayContent = document.querySelector("#displayContent");
 const numbers = document.querySelectorAll(".number");
+const operators = document.querySelectorAll(".operator");
+const equals = document.querySelector("#equals");
 
 //push user input to array and update display content with user input
-let numbersArr = [];
+let inputArr = [];
 
 for (let i = 0; i < numbers.length; i++) {
 	numbers[i].addEventListener("click", () => {
-		if (numbersArr.length === 0) {
+		if (inputArr.length === 0) {
 			displayContent.textContent = numbers[i].textContent;
+			inputArr.push(numbers[i].textContent);
 		}
-		else if (numbersArr.length < 14) {
+		else if (inputArr.length < 13) {
 			displayContent.textContent += numbers[i].textContent;
+			inputArr.push(numbers[i].textContent);
 		}
-		numbersArr.push(numbers[i].textContent);
 	})
 }
 
-//implement function for clearing display and array from user input
+for (let k = 0; k < operators.length; k++) {
+	operators[k].addEventListener("click", () => {
+		if (inputArr.length === 0) {
+			displayContent.textContent = operators[k].textContent;
+			inputArr.push(operators[k].textContent);
+		}
+		else if (inputArr.length < 13) {
+			displayContent.textContent += operators[k].textContent;
+			inputArr.push(operators[k].textContent);
+		}
+	})
+}
+
+//function for clearing display and array from user input
 clear.addEventListener("click", () => {
 	displayContent.textContent = "0";
-	for (let j = numbersArr.length; j > 0; j--) {
-		numbersArr.pop();
+	for (let j = inputArr.length; j > 0; j--) {
+		inputArr.pop();
 	}
+})
+
+
+//function for getting result based on user input
+equals.addEventListener("click", () => {
+	
 })
