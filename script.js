@@ -19,10 +19,6 @@ function divide(inputOne, inputTwo) {
     return inputOne / inputTwo;
 }
 
-function power(inputOne, inputTwo) {
-	return inputOne ** inputTwo;
-}
-
 function operate(operator, numOne, numTwo) {
 	if (operator === "+") {
 		add(numOne, numTwo);
@@ -44,9 +40,10 @@ const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector("#equals");
 
-//push user input to array and update display content with user input
+//push user input to array/string and update display content with user input
 let inputArr = [];
-
+let operator = "";
+//numbers
 for (let i = 0; i < numbers.length; i++) {
 	numbers[i].addEventListener("click", () => {
 		if (inputArr.length === 0) {
@@ -59,7 +56,7 @@ for (let i = 0; i < numbers.length; i++) {
 		}
 	})
 }
-
+//operators
 for (let k = 0; k < operators.length; k++) {
 	operators[k].addEventListener("click", () => {
 		if (inputArr.length === 0) {
@@ -69,6 +66,7 @@ for (let k = 0; k < operators.length; k++) {
 		else if (inputArr.length < 13) {
 			displayContent.textContent += operators[k].textContent;
 			inputArr.push(operators[k].textContent);
+			operator = operators[k].textContent;
 		}
 	})
 }
@@ -84,5 +82,20 @@ clear.addEventListener("click", () => {
 
 //function for getting result based on user input
 equals.addEventListener("click", () => {
-	
+	let operatorIndex = inputArr.indexOf(operator);
+	let firstValue = ;
+	let secondValue = ;
+
+	if (operator === "+") {
+
+	}
+	else if (operator === "-") {
+
+	}
+	else if (operator === "*") {
+
+	}
+	else if (operator === "/") {
+
+	}
 })
