@@ -40,16 +40,6 @@ const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector("#equals");
 
-//populating the display
-function populateDis(content) {
-	if (inputArr.length === 0) {
-		displayContent.textContent = content.textContent;
-	}
-	else if (inputArr.length < 13) {
-		displayContent.textContent += content.textContent;
-	}
-}
-
 //push user input to array/string and update display content with user input
 let inputArr = [];
 let operator = "";
