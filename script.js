@@ -6,13 +6,8 @@ function subtract (inputOne, inputTwo) {
 	return inputOne - inputTwo;
 }
 
-function multiply(input) {
-	if (input.length > 0) {
-		return input.reduce((a, b) => a * b);
-	}
-	else {
-	    return 0;
-	}
+function multiply(inputOne, inputTwo) {
+	return inputOne * inputTwo;
 }
 
 function divide(inputOne, inputTwo) {
@@ -21,16 +16,16 @@ function divide(inputOne, inputTwo) {
 
 function operate(operator, numOne, numTwo) {
 	if (operator === "+") {
-		add(numOne, numTwo);
+		return add(numOne, numTwo);
 	}
 	else if (operator === "-") {
-		subtract(numOne, numTwo);
+		return subtract(numOne, numTwo);
 	}
 	else if (operator === "*") {
-		multiply(numOne, numTwo);
+		return multiply(numOne, numTwo);
 	}
 	else if (operator === "/") {
-		divide(numOne, numTwo);
+		return divide(numOne, numTwo);
 	}
 }
 
@@ -79,8 +74,27 @@ clear.addEventListener("click", () => {
 	}
 })
 
-
 //function for getting result based on user input
+let operatorsArr = ["+", "-", "*", "/"];
+
 equals.addEventListener("click", () => {
-	
+	for (let l = 0; l < inputArr.length; l++) {
+		for (let m = 0; m < operatorsArr.length; m++) {
+
+			//check if inputArr contains an operator
+			let opCheck = inputArr.includes(operatorsArr[m]);
+
+			if (opCheck === true) {
+				let opIndex = inputArr.indexOf(operatorsArr[m]);
+				operator == inputArr.splice(opIndex, 1);
+			}
+		}
+	}
+	let a = Number(inputArr[1]);
+	console.log(typeof a);
+
+	let b = Number(inputArr[2]);
+	console.log(typeof b);
+	let result = operate(operator, a, b);
+	console.log(result);
 })
