@@ -14,6 +14,7 @@ function divide(inputOne, inputTwo) {
     return inputOne / inputTwo;
 }
 
+//receives processed user input from equals click event
 function operate(operator, numOne, numTwo) {
 	if (operator === "+") {
 		return add(numOne, numTwo);
@@ -35,10 +36,11 @@ const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector("#equals");
 
-//push user input to array/string and update display content with user input
 let inputArr = [];
 let operator = "";
+let operatorsArr = ["+", "-", "*", "/"];
 
+//push user input to array/string and update display content with user input
 //populating the display
 function populateDis(content) {
 	if (inputArr.length === 0) {
@@ -75,26 +77,31 @@ clear.addEventListener("click", () => {
 })
 
 //function for getting result based on user input
-let operatorsArr = ["+", "-", "*", "/"];
-
 equals.addEventListener("click", () => {
 	for (let l = 0; l < inputArr.length; l++) {
 		for (let m = 0; m < operatorsArr.length; m++) {
 
 			//check if inputArr contains an operator
 			let opCheck = inputArr.includes(operatorsArr[m]);
-
+			//separate operator from numbers
 			if (opCheck === true) {
 				let opIndex = inputArr.indexOf(operatorsArr[m]);
 				operator == inputArr.splice(opIndex, 1);
 			}
 		}
 	}
-	let a = Number(inputArr[1]);
-	console.log(typeof a);
 
-	let b = Number(inputArr[2]);
-	console.log(typeof b);
+	let a = Number(inputArr[0]);
+	let b = Number(inputArr[1]);
 	let result = operate(operator, a, b);
+	populateDis(result.toString());
 	console.log(result);
+	console.log(inputArr);
+
+	for (let n = inputArr.length; n > 0; n--) {
+		inputArr.pop();
+	}
+	console.log(inputArr);
+	inputArr.push(result);
+	console.log(inputArr);
 })
