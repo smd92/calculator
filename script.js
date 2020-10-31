@@ -70,7 +70,6 @@ for (let k = 0; k < operators.length; k++) {
 				opCheck = inputArr.includes(operatorsArr[o]);
 			}
 		}
-		console.log(opCheck);
 		
 		if (opCheck === true) {
 			getResult();
@@ -83,7 +82,6 @@ for (let k = 0; k < operators.length; k++) {
 			inputArr.push(operators[k].textContent);
 			operator = operators[k].textContent;
 		}
-	console.log(inputArr);
 	})
 }
 
