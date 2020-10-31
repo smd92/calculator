@@ -40,7 +40,6 @@ let inputArr = [];
 let operator = "";
 let operatorsArr = ["+", "-", "*", "/"];
 
-//push user input to array/string and update display content with user input
 //populating the display
 function populateDis(content) {
 	if (inputArr.length === 0) {
@@ -51,6 +50,7 @@ function populateDis(content) {
 	}
 }
 
+//push user input to array/string and update display content with user input
 //numbers
 for (let i = 0; i < numbers.length; i++) {
 	numbers[i].addEventListener("click", () => {
@@ -73,9 +73,9 @@ for (let k = 0; k < operators.length; k++) {
 		
 		if (opCheck === true) {
 			getResult();
+			populateDis(operators[k]);
 			inputArr.push(operators[k].textContent);
 			operator = operators[k].textContent;
-			populateDis(operators[k]);
 		}
 		else {
 			populateDis(operators[k]);
@@ -125,6 +125,7 @@ function getResult() {
 		inputArr.pop();
 	}
 	console.log(inputArr);
+
 	inputArr.push(result);
 	console.log(inputArr);
 }
