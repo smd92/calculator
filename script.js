@@ -62,9 +62,28 @@ for (let i = 0; i < numbers.length; i++) {
 //operators
 for (let k = 0; k < operators.length; k++) {
 	operators[k].addEventListener("click", () => {
-		populateDis(operators[k]);
-		inputArr.push(operators[k].textContent);
-		operator = operators[k].textContent;
+
+		//check if there's already an operator and compute result if true
+		let opCheck = "";
+		for (let o = 0; o < inputArr.length; o++) {
+			for(let p = 0; p < operatorsArr.length; p++) {
+				opCheck = inputArr.includes(operatorsArr[o]);
+			}
+		}
+		console.log(opCheck);
+		
+		if (opCheck === true) {
+			getResult();
+			inputArr.push(operators[k].textContent);
+			operator = operators[k].textContent;
+			populateDis(operators[k]);
+		}
+		else {
+			populateDis(operators[k]);
+			inputArr.push(operators[k].textContent);
+			operator = operators[k].textContent;
+		}
+	console.log(inputArr);
 	})
 }
 
@@ -78,6 +97,10 @@ clear.addEventListener("click", () => {
 
 //function for getting result based on user input
 equals.addEventListener("click", () => {
+	getResult();
+})
+
+function getResult() {
 	for (let l = 0; l < inputArr.length; l++) {
 		for (let m = 0; m < operatorsArr.length; m++) {
 
@@ -94,7 +117,9 @@ equals.addEventListener("click", () => {
 	let a = Number(inputArr[0]);
 	let b = Number(inputArr[1]);
 	let result = operate(operator, a, b);
-	populateDis(result.toString());
+	
+	displayContent.textContent = result;
+
 	console.log(result);
 	console.log(inputArr);
 
@@ -104,4 +129,4 @@ equals.addEventListener("click", () => {
 	console.log(inputArr);
 	inputArr.push(result);
 	console.log(inputArr);
-})
+}
