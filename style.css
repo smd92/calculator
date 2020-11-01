@@ -127,13 +127,13 @@ body {
     height: 95%;
     width: 95%;
     color: black;
-    background-color: orchid;
+    background-color: #6E00C4;
     border-radius: 5px;
 }
 
 #equals {
     display: grid;
-    background-color: #2764F0;
+    background-color: #CEED21;
     color: black;
     width: 95%;
     height: 95%;
