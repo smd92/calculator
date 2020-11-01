@@ -129,10 +129,12 @@ function getResult() {
 	console.log(result);
 	console.log(inputArr);
 
+	//reset data
 	operator = "";
 	inputArr.forEach( () => inputArr.splice(0));
 	numOneArr.forEach( () => numOneArr.splice(0));
 	numTwoArr.forEach( () => numTwoArr.splice(0));
+
 	numOneArr.push(result);
 	inputArr.push(result);
 }
