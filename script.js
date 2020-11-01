@@ -42,16 +42,6 @@ let inputArr = [];
 let operator = "";
 let operatorsArr = ["+", "-", "*", "/"];
 
-//populating the display
-function populateDis(content) {
-	if (inputArr.length === 0) {
-		displayContent.textContent = content.textContent;
-	}
-	else if (inputArr.length < 13) {
-		displayContent.textContent += content.textContent;
-	}
-}
-
 //push user input to array/string and update display content with user input
 //numbers
 for (let i = 0; i < numbers.length; i++) {
@@ -75,18 +65,20 @@ for (let k = 0; k < operators.length; k++) {
 	operators[k].addEventListener("click", () => {
 
 		//check if there's already an operator and compute result if true
-		let opCheck = "";
-		for (let o = 0; o < inputArr.length; o++) {
-			for (let p = 0; p < operatorsArr.length; p++) {
-				opCheck = inputArr.includes(operatorsArr[o]);
+		let opCheck = inputArr.some((element) => {
+			if (element === "+" || element === "-" || element === "*" || element === "/") {
+				return true;
 			}
-		}
+			else {
+				return false;
+			}
+		})
 		
 		if (opCheck === true) {
-			populateDis(operators[k]);
-			inputArr.push(operators[k].textContent);
-			operator = operators[k].textContent;
 			getResult();
+			inputArr.push(operators[k].textContent);
+			populateDis(operators[k]);
+			operator = operators[k].textContent;
 		}
 		else {
 			populateDis(operators[k]);
@@ -100,18 +92,24 @@ for (let k = 0; k < operators.length; k++) {
 clear.addEventListener("click", () => {
 
 	displayContent.textContent = "0";
-
-	operator = "";
-	inputArr.forEach( () => inputArr.splice(0));
-	numOneArr.forEach( () => numOneArr.splice(0));
-	numTwoArr.forEach( () => numTwoArr.splice(0));
+	clearData();
 })
 
-//function for getting result based on user input
 equals.addEventListener("click", () => {
 	getResult();
 })
 
+//populating the display
+function populateDis(content) {
+	if (inputArr.length === 0) {
+		displayContent.textContent = content.textContent;
+	}
+	else if (inputArr.length < 13) {
+		displayContent.textContent += content.textContent;
+	}
+}
+
+//function for getting result based on user input
 function getResult() {
 	for (let l = 0; l < inputArr.length; l++) {
 		for (let m = 0; m < operatorsArr.length; m++) {
@@ -125,16 +123,15 @@ function getResult() {
 	let result = operate(operator, a, b);
 	
 	displayContent.textContent = result;
+	clearData();
 
-	console.log(result);
-	console.log(inputArr);
+	numOneArr.push(result);
+	inputArr.push(result);
+}
 
-	//reset data
+function clearData() {
 	operator = "";
 	inputArr.forEach( () => inputArr.splice(0));
 	numOneArr.forEach( () => numOneArr.splice(0));
 	numTwoArr.forEach( () => numTwoArr.splice(0));
-
-	numOneArr.push(result);
-	inputArr.push(result);
 }

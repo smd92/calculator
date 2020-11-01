@@ -83,7 +83,6 @@ body {
     font-size: 55px;
     justify-items: center;
     align-items: center;
-    justify-content: space-evenly;
 }
 
 #digits {
@@ -95,7 +94,17 @@ body {
     align-self: center;
     align-items: center;
     justify-items: center;
-    justify-content: space-evenly;
+}
+
+.number {
+    display: grid;
+    background-color: darkgray;
+    width: 95%;
+    height: 95%;
+    align-items: center;
+    justify-items: center;
+    color: black;
+    border-radius: 5px;
 }
 
 #operators {
@@ -107,31 +116,40 @@ body {
     align-self: center;
     align-items: center;
     justify-items: center;
-    background-color: orchid;
-    border-radius: 5px;
-    color: black;
     font-weight: bolder;
+    justify-self: end;
 }
 
 .operator {
     display: grid;
     justify-items: center;
     align-items: center;
-    border: solid;
-    border-color: black;
+    height: 95%;
+    width: 95%;
+    color: black;
+    background-color: orchid;
     border-radius: 5px;
-    height: 100%;
-    width: 100%;
 }
 
 #equals {
     display: grid;
-    background-color: olivedrab;
+    background-color: #2764F0;
     color: black;
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 95%;
     border-radius: 5px;
     font-weight: bolder;
     align-items: center;
     justify-items: center;
+}
+
+#decimal {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    height: 95%;
+    width: 95%;
+    color: black;
+    background-color: darkgray;
+    border-radius: 5px;
 }
