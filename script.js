@@ -83,10 +83,10 @@ for (let k = 0; k < operators.length; k++) {
 		}
 		
 		if (opCheck === true) {
-			getResult();
 			populateDis(operators[k]);
 			inputArr.push(operators[k].textContent);
 			operator = operators[k].textContent;
+			getResult();
 		}
 		else {
 			populateDis(operators[k]);
