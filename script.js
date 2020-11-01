@@ -36,6 +36,8 @@ const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector("#equals");
 
+let numOneArr = [];
+let numTwoArr = [];
 let inputArr = [];
 let operator = "";
 let operatorsArr = ["+", "-", "*", "/"];
@@ -54,7 +56,16 @@ function populateDis(content) {
 //numbers
 for (let i = 0; i < numbers.length; i++) {
 	numbers[i].addEventListener("click", () => {
-		populateDis(numbers[i]);
+
+		if (operator === "") {
+			populateDis(numbers[i]);
+			numOneArr.push(numbers[i].textContent);
+		}
+		else {
+			populateDis(numbers[i]);
+			numTwoArr.push(numbers[i].textContent);
+		}
+
 		inputArr.push(numbers[i].textContent);
 	})
 }
@@ -66,7 +77,7 @@ for (let k = 0; k < operators.length; k++) {
 		//check if there's already an operator and compute result if true
 		let opCheck = "";
 		for (let o = 0; o < inputArr.length; o++) {
-			for(let p = 0; p < operatorsArr.length; p++) {
+			for (let p = 0; p < operatorsArr.length; p++) {
 				opCheck = inputArr.includes(operatorsArr[o]);
 			}
 		}
@@ -87,10 +98,13 @@ for (let k = 0; k < operators.length; k++) {
 
 //function for clearing display and array from user input
 clear.addEventListener("click", () => {
+
 	displayContent.textContent = "0";
-	for (let j = inputArr.length; j > 0; j--) {
-		inputArr.pop();
-	}
+
+	operator = "";
+	inputArr.forEach( () => inputArr.splice(0));
+	numOneArr.forEach( () => numOneArr.splice(0));
+	numTwoArr.forEach( () => numTwoArr.splice(0));
 })
 
 //function for getting result based on user input
@@ -101,19 +115,13 @@ equals.addEventListener("click", () => {
 function getResult() {
 	for (let l = 0; l < inputArr.length; l++) {
 		for (let m = 0; m < operatorsArr.length; m++) {
-
 			//check if inputArr contains an operator
 			let opCheck = inputArr.includes(operatorsArr[m]);
-			//separate operator from numbers
-			if (opCheck === true) {
-				let opIndex = inputArr.indexOf(operatorsArr[m]);
-				operator == inputArr.splice(opIndex, 1);
-			}
 		}
 	}
 
-	let a = Number(inputArr[0]);
-	let b = Number(inputArr[1]);
+	let a = Number(numOneArr.join(""));
+	let b = Number(numTwoArr.join(""));
 	let result = operate(operator, a, b);
 	
 	displayContent.textContent = result;
@@ -121,11 +129,10 @@ function getResult() {
 	console.log(result);
 	console.log(inputArr);
 
-	for (let n = inputArr.length; n > 0; n--) {
-		inputArr.pop();
-	}
-	console.log(inputArr);
-
+	operator = "";
+	inputArr.forEach( () => inputArr.splice(0));
+	numOneArr.forEach( () => numOneArr.splice(0));
+	numTwoArr.forEach( () => numTwoArr.splice(0));
+	numOneArr.push(result);
 	inputArr.push(result);
-	console.log(inputArr);
 }
