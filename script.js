@@ -111,13 +111,6 @@ function populateDis(content) {
 
 //function for getting result based on user input
 function getResult() {
-	for (let l = 0; l < inputArr.length; l++) {
-		for (let m = 0; m < operatorsArr.length; m++) {
-			//check if inputArr contains an operator
-			let opCheck = inputArr.includes(operatorsArr[m]);
-		}
-	}
-
 	let a = Number(numOneArr.join(""));
 	let b = Number(numTwoArr.join(""));
 	let result = operate(operator, a, b);
