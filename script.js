@@ -35,6 +35,7 @@ const displayContent = document.querySelector("#displayContent");
 const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector("#equals");
+const decimal = document.querySelector("#decimal");
 
 let numOneArr = [];
 let numTwoArr = [];
@@ -48,14 +49,12 @@ for (let i = 0; i < numbers.length; i++) {
 	numbers[i].addEventListener("click", () => {
 
 		if (operator === "") {
-			populateDis(numbers[i]);
 			numOneArr.push(numbers[i].textContent);
 		}
 		else {
-			populateDis(numbers[i]);
 			numTwoArr.push(numbers[i].textContent);
 		}
-
+		populateDis(numbers[i]);
 		inputArr.push(numbers[i].textContent);
 	})
 }
@@ -66,27 +65,47 @@ for (let k = 0; k < operators.length; k++) {
 
 		//check if there's already an operator and compute result if true
 		let opCheck = inputArr.some((element) => {
-			if (element === "+" || element === "-" || element === "*" || element === "/") {
-				return true;
-			}
-			else {
-				return false;
-			}
+			return operatorsArr.includes(element);
 		})
 		
-		if (opCheck === true) {
+		if (numOneArr.length > 0 && operator.length > 0 && numTwoArr.length === 0) {
+			numTwoArr.push(operators[k].textContent);
+		}
+		else if (opCheck === true) {
 			getResult();
-			inputArr.push(operators[k].textContent);
-			populateDis(operators[k]);
 			operator = operators[k].textContent;
 		}
 		else {
-			populateDis(operators[k]);
-			inputArr.push(operators[k].textContent);
 			operator = operators[k].textContent;
 		}
+
+		populateDis(operators[k]);
+		inputArr.push(operators[k].textContent);
 	})
 }
+
+//allow floating point numbers to be entered
+decimal.addEventListener("click", () => {
+
+	let numOneCheck = numOneArr.some((elementOne) => {
+		return ["."].includes(elementOne);
+	})
+
+	let numTwoCheck = numTwoArr.some((elementTwo) => {
+		return ["."].includes(elementTwo);
+	})
+	
+	if (operator.length === 0 && numOneCheck === false) {
+		numOneArr.push(decimal.textContent);
+		populateDis(decimal);
+		inputArr.push(decimal);
+	}
+	else if (operator.length === 1 && numTwoCheck === false) {
+		numTwoArr.push(decimal.textContent);
+		populateDis(decimal);
+		inputArr.push(decimal);
+	}
+})
 
 //function for clearing display and array from user input
 clear.addEventListener("click", () => {
@@ -114,12 +133,13 @@ function getResult() {
 	let a = Number(numOneArr.join(""));
 	let b = Number(numTwoArr.join(""));
 	let result = operate(operator, a, b);
+	let rounded = Math.round((result + Number.EPSILON) * 100) / 100;
 	
-	displayContent.textContent = result;
+	displayContent.textContent = rounded;
 	clearData();
 
-	numOneArr.push(result);
-	inputArr.push(result);
+	numOneArr.push(rounded);
+	inputArr.push(rounded);
 }
 
 function clearData() {
