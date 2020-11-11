@@ -49,10 +49,14 @@ for (let i = 0; i < numbers.length; i++) {
 	numbers[i].addEventListener("click", () => {
 
 		if (operator === "") {
+    
 			numOneArr.push(numbers[i].textContent);
+      
 		}
 		else {
+    
 			numTwoArr.push(numbers[i].textContent);
+      
 		}
 		populateDis(numbers[i]);
 		inputArr.push(numbers[i].textContent);
@@ -67,20 +71,37 @@ for (let k = 0; k < operators.length; k++) {
 		let opCheck = inputArr.some((element) => {
 			return operatorsArr.includes(element);
 		})
+    
+    let numTwoCheck = numTwoArr.some((elementTwo) => {
+			return ["0" ,"1" ,"2" ,"3" ,"4" ,"5" ,"6" ,"7" ,"8" ,"9"] .includes(elementTwo);
+	})
 		
-		if (numOneArr.length > 0 && operator.length > 0 && numTwoArr.length === 0) {
+		if (numOneArr.length > 0 && operator.length > 0 && numTwoArr.length === 0 &&
+    (operators[k].textContent === "-" || operators[k].textContent === "+")) {
+    
 			numTwoArr.push(operators[k].textContent);
+      
+      populateDis(operators[k]);
+      inputArr.push(operators[k].textContent);
+  
 		}
-		else if (opCheck === true) {
+		else if (opCheck === true && numTwoCheck === true) {
+    
 			getResult();
 			operator = operators[k].textContent;
+      
+      populateDis(operators[k]);
+      inputArr.push(operators[k].textContent);
+      
 		}
-		else {
+		else if (opCheck === false) {
+    
 			operator = operators[k].textContent;
+      
+      populateDis(operators[k]);
+      inputArr.push(operators[k].textContent);
+      
 		}
-
-		populateDis(operators[k]);
-		inputArr.push(operators[k].textContent);
 	})
 }
 
@@ -96,14 +117,18 @@ decimal.addEventListener("click", () => {
 	})
 	
 	if (operator.length === 0 && numOneCheck === false) {
+  
 		numOneArr.push(decimal.textContent);
 		populateDis(decimal);
 		inputArr.push(decimal);
+    
 	}
 	else if (operator.length === 1 && numTwoCheck === false) {
+  
 		numTwoArr.push(decimal.textContent);
 		populateDis(decimal);
 		inputArr.push(decimal);
+    
 	}
 })
 
@@ -120,11 +145,15 @@ equals.addEventListener("click", () => {
 
 //populating the display
 function populateDis(content) {
+
 	if (inputArr.length === 0) {
 		displayContent.textContent = content.textContent;
+    
 	}
 	else if (inputArr.length < 13) {
+  
 		displayContent.textContent += content.textContent;
+    
 	}
 }
 
